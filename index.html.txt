@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manas Rao | Portfolio</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f0f4f8;
+      color: #2c5364;
+      line-height: 1.6;
+      padding-top: 60px;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    a {
+      color: #2c5364;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #2575fc;
+    }
+
+    /* Navbar */
+    .nav-container {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #fff;
+      border-bottom: 2px solid #2c5364;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      z-index: 10000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+    }
+    .btn-resume {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: #2575fc;
+  color: white;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 12px rgba(37, 117, 252, 0.5);
+  transition: background 0.3s ease;
+}
+.btn-resume:hover {
+  background: #1a4fb7;
+}
+body.dark-mode .btn-resume {
+  background: #81a1c1;
+  color: #2e3440;
+  box-shadow: 0 6px 12px rgba(129, 161, 193, 0.7);
+}
+body.dark-mode .btn-resume:hover {
+  background: #5e81ac;
+  color: white;
+}
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #2c5364;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 25px;
+    }
+    .nav-link {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 5px 0;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-link:hover {
+      border-color: #2575fc;
+      color: #2575fc;
+    }
+
+    /* Hamburger (hidden desktop) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      height: 3px;
+      background: #2c5364;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg);
+      position: relative;
+      top: 7px;
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      position: relative;
+      top: -7px;
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero h2 {
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: #555;
+    }
+    .social-icons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-size: 1.5rem;
+    }
+    .social-icons a {
+      color: #2c5364;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #2575fc;
+    }
+
+    /* Sections */
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    section h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid #2575fc;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      color: #2c5364;
+    }
+
+    /* About */
+    .about p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .skill-card {
+      background: #2575fc;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(37, 117, 252, 0.4);
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .skill-card:hover {
+      background: #1a4fb7;
+      cursor: default;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      margin-bottom: 10px;
+      color: #2575fc;
+    }
+
+    /* Contact */
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact input, 
+    .contact textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+    }
+    .contact input:focus,
+    .contact textarea:focus {
+      outline: none;
+      border-color: #2575fc;
+      box-shadow: 0 0 6px rgba(37,117,252,0.5);
+    }
+    .contact button {
+      background: #2575fc;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.3s ease;
+    }
+    .contact button:hover {
+      background: #1a4fb7;
+    }
+
+    /* Animate on scroll */
+    .animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-mode .nav-container {
+      background: #1e1e1e;
+      border-color: #444;
+      box-shadow: none;
+    }
+    body.dark-mode a,
+    body.dark-mode .nav-logo {
+      color: #88c0d0;
+    }
+    body.dark-mode .nav-link:hover {
+      color: #81a1c1;
+      border-color: #81a1c1;
+    }
+    body.dark-mode .skill-card {
+      background: #5e81ac;
+      box-shadow: 0 4px 8px rgba(94, 129, 172, 0.6);
+    }
+    body.dark-mode .skill-card:hover {
+      background: #81a1c1;
+    }
+    body.dark-mode .project-card {
+      background: #2e3440;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+      color: #d8dee9;
+    }
+    body.dark-mode .project-card:hover {
+      box-shadow: 0 10px 18px rgba(0,0,0,0.8);
+    }
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background: #3b4252;
+      border-color: #434c5e;
+      color: #d8dee9;
+    }
+    body.dark-mode input:focus,
+    body.dark-mode textarea:focus {
+      border-color: #81a1c1;
+      box-shadow: 0 0 6px #81a1c1;
+    }
+    body.dark-mode .contact button {
+      background: #81a1c1;
+      color: #2e3440;
+    }
+    body.dark-mode .contact button:hover {
+      background: #5e81ac;
+    }
+
+    /* Dark mode toggle */
+    #darkModeToggle {
+      margin-left: 15px;
+      cursor: pointer;
+      transform: scale(1.3);
+      vertical-align: middle;
+    }
+    #mode-label {
+      cursor: pointer;
+      font-weight: 600;
+      user-select: none;
+      color: #2c5364;
+    }
+    body.dark-mode #mode-label {
+      color: #88c0d0;
+    }
+
+    /* Responsive Improvements */
+
+    /* Smaller devices (phones) */
+    @media (max-width: 480px) {
+      body {
+        padding-top: 50px;
+      }
+      
+      .nav-container {
+        padding: 10px 15px;
+      }
+      
+      .nav-menu {
+        flex-direction: column;
+        gap: 15px;
+        background: #2575fc;
+        position: fixed;
+        top: 50px;
+        right: -220px;
+        width: 180px;
+        height: calc(100% - 50px);
+        padding: 20px;
+        transition: right 0.3s ease;
+        border-radius: 0 0 0 10px;
+        z-index: 9999;
+      }
+      
+      .nav-menu.open {
+        right: 0;
+      }
+      
+      .nav-link {
+        color: white;
+        font-size: 1.1rem;
+        border: none;
+      }
+      
+      .nav-link:hover {
+        color: #e3e9fc;
+        border: none;
+      }
+      
+      /* Hamburger Menu */
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-logo {
+        font-size: 1.3rem;
+      }
+      
+      /* Sections padding */
+      section {
+        margin: 40px 15px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.1rem;
+      }
+      
+      .skills-grid {
+        justify-content: center;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="nav-container">
+    <a href="#hero" class="nav-logo">Manas Rao</a>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-menu">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#portfolio" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <label id="mode-label" for="darkModeToggle">Light Mode</label>
+      <input type="checkbox" id="darkModeToggle" />
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+ <div class="hero animate" id="hero">
+  <h1>Manas Rao</h1>
+  <h2>Passionate Website Developer | HTML, CSS & JavaScript</h2>
+  <div class="social-icons">
+    <a href="https://github.com/manasrao" target="_blank" aria-label="GitHub">🐙</a>
+    <a href="https://linkedin.com/in/manasrao" target="_blank" aria-label="LinkedIn">💼</a>
+    <a href="https://twitter.com/manasrao" target="_blank" aria-label="Twitter">🐦</a>
+  </div>
+  <!-- Add resume button here -->
+   <a href="YOUR_RESUME_LINK.pdf" target="_blank" download class="btn-resume">Download My Resume</a>
+
+</div>
+  <!-- About Section -->
+  <section class="about animate" id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a passionate website developer with expertise in HTML, CSS, and JavaScript.
+      I enjoy turning ideas into functional and beautiful websites. I focus on responsive design,
+      accessibility, and performance.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills animate" id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">HTML5</div>
+      <div class="skill-card">CSS3</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">Responsive Design</div>
+      <div class="skill-card">Git & GitHub</div>
+      <div class="skill-card">VS Code</div>
+      <div class="skill-card">SEO Basics</div>
+      <div class="skill-card">Web Performance</div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio animate" id="portfolio">
+    <h2>Projects</h2>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <h3>Project One</h3>
+        <p>A responsive website for a local business using HTML, CSS, and JS.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project Two</h3>
+        <p>Interactive portfolio with animations and smooth scrolling.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project Three</h3>
+        <p>E-commerce site prototype with clean UI and cart features.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact animate" id="contact">
+    <h2>Contact Me</h2>
+    <p>Feel free to get in touch! You can email me or use the form below.</p>
+    <form onsubmit="event.preventDefault(); alert('Thank you for reaching out!');">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <script>
+    // Scroll animation script
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.animate');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+
+    // Dark mode toggle script
+    const toggle = document.getElementById('darkModeToggle');
+    const modeLabel = document.getElementById('mode-label');
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        document.body.classList.add('dark-mode');
+        modeLabel.textContent = 'Dark Mode';
+      } else {
+        document.body.classList.remove('dark-mode');
+        modeLabel.textContent = 'Light Mode';
+      }
+    });
+
+    // Hamburger menu toggle for mobile
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
